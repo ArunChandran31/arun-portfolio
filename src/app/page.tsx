@@ -10,6 +10,7 @@ import Experience from "@/components/Experiences";
 import Projects from "@/components/Projects";
 import Contact from "@/components/contact";
 import Socials from "@/components/Socials";
+import Skills from "@/components/Skills";
 
 export default function Home() {
   const [showHero, setShowHero] = useState(false);
@@ -31,6 +32,7 @@ export default function Home() {
           <About/>
           <Experience />
           <Projects /> 
+          <Skills/>
           <Contact />
           <Socials />
         </>

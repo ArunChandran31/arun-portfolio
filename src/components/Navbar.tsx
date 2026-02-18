@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 export default function Navbar() {
   return (
     <header
@@ -44,12 +46,42 @@ function NavLink({
   href: string;
   children: React.ReactNode;
 }) {
+  const [active, setActive] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const section = document.querySelector(href);
+      if (!section) return;
+
+      const rect = section.getBoundingClientRect();
+      const inView =
+        rect.top <= window.innerHeight * 0.4 &&
+        rect.bottom >= window.innerHeight * 0.4;
+
+      setActive(inView);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [href]);
+
   return (
     <a
       href={href}
-      className="relative group transition duration-300"
+      className={`
+        relative group transition-all duration-300
+        hover:-translate-y-1
+        hover:scale-105
+        ${active ? "-translate-y-1 scale-105" : ""}
+      `}
     >
-      <span className="text-white/70 group-hover:text-white transition duration-300">
+      <span
+        className={`
+          transition duration-300
+          ${active ? "text-white" : "text-white/70 group-hover:text-white"}
+        `}
+      >
         {children}
       </span>
 
@@ -63,6 +95,20 @@ function NavLink({
           group-hover:w-full
         "
       />
+
+      {/* Glow when active */}
+      {active && (
+        <span
+          className="
+            absolute inset-0
+            -z-10
+            blur-lg
+            bg-white/10
+            rounded-md
+            animate-pulse
+          "
+        />
+      )}
     </a>
   );
 }

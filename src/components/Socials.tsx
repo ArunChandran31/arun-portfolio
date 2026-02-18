@@ -8,18 +8,37 @@ export default function Socials() {
 
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "end start"],
+    offset: ["start 90%", "end 10%"], // animate only near entry & exit
   });
 
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
-  const y = useTransform(scrollYProgress, [0, 1], [80, -80]);
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.96, 1, 0.96]);
+  /* Vertical movement only at entry & exit */
+  const y = useTransform(
+    scrollYProgress,
+    [0, 0.15, 0.85, 1],
+    [80, 0, 0, -80]
+  );
 
+  /* Scale */
+  const scale = useTransform(
+    scrollYProgress,
+    [0, 0.5, 1],
+    [0.96, 1, 0.96]
+  );
+
+  /* Fade */
+  const opacity = useTransform(
+    scrollYProgress,
+    [0, 0.15, 0.85, 1],
+    [0, 1, 1, 0]
+  );
+
+  /* Blur only at entry & exit */
   const blurValue = useTransform(
     scrollYProgress,
-    [0, 0.2, 0.8, 1],
-    [12, 0, 0, 12]
+    [0, 0.15, 0.85, 1],
+    [12, 0, 0, 14]
   );
+
   const blur = useTransform(blurValue, (v) => `blur(${v}px)`);
 
   return (
@@ -27,10 +46,10 @@ export default function Socials() {
       ref={ref}
       id="socials"
       style={{ opacity, y, scale, filter: blur }}
-      className="px-24 py-32 text-white"
+      className="px-24 py-32 text-white scroll-mt-32"
     >
       <h2 className="text-6xl font-bold mb-10 tracking-tight">
-        connect.
+        socials.
       </h2>
 
       <p className="text-lg text-white/70 mb-20 max-w-2xl">
@@ -123,8 +142,6 @@ function SocialCard({
           ↗
         </span>
       </div>
-
-      
     </motion.a>
   );
 }

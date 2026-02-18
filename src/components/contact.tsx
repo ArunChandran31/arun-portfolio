@@ -12,26 +12,48 @@ export default function Contact() {
 
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "end start"],
+    offset: ["start 90%", "end 10%"], // animate only near entry & exit
   });
 
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
-  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.96, 1, 0.96]);
+  /* Vertical movement only at entry & exit */
+  const y = useTransform(
+    scrollYProgress,
+    [0, 0.15, 0.85, 1],
+    [80, 0, 0, -80]
+  );
 
+  /* Scale */
+  const scale = useTransform(
+    scrollYProgress,
+    [0, 0.5, 1],
+    [0.96, 1, 0.96]
+  );
+
+  /* Fade */
+  const opacity = useTransform(
+    scrollYProgress,
+    [0, 0.15, 0.85, 1],
+    [0, 1, 1, 0]
+  );
+
+  /* Blur only at entry & exit */
   const blurValue = useTransform(
     scrollYProgress,
-    [0, 0.2, 0.8, 1],
-    [12, 0, 0, 12]
+    [0, 0.15, 0.85, 1],
+    [12, 0, 0, 14]
   );
-  const blur = useTransform(blurValue, (v) => `blur(${v}px)`);
+
+  const blur = useTransform(
+    blurValue,
+    (v) => `blur(${v}px)`
+  );
 
   return (
     <motion.section
       ref={ref}
       id="contact"
       style={{ opacity, y, scale, filter: blur }}
-      className="min-h-[50vh] px-24 py-32 text-white"
+      className="min-h-[50vh] px-24 py-32 text-white scroll-mt-32"
     >
       <h2 className="text-6xl font-bold mb-24 tracking-tight">
         contact.
@@ -90,7 +112,6 @@ export default function Contact() {
           </div>
         </motion.div>
 
-
         {/* RIGHT CARD — CREVIRO */}
         <motion.div
           whileHover={{ y: -6 }}
@@ -143,8 +164,6 @@ export default function Contact() {
         </motion.div>
 
       </div>
-
-      
     </motion.section>
   );
 }

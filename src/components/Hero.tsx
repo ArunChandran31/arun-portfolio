@@ -4,7 +4,6 @@ import {
   motion,
   useScroll,
   useTransform,
-  MotionValue
 } from "framer-motion";
 import { useRef } from "react";
 
@@ -16,24 +15,18 @@ export default function Hero() {
     offset: ["start start", "end start"],
   });
 
-  // Horizontal movement
+  // Scroll animations
   const textX = useTransform(scrollYProgress, [0, 1], ["0%", "-30%"]);
   const imageX = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-
-  // Scale shrink
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.9]);
-
-  // Fade out
   const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
-
-  // Blur (FIXED)
   const blurValue = useTransform(scrollYProgress, [0, 1], [0, 8]);
   const blur = useTransform(blurValue, (value) => `blur(${value}px)`);
 
   return (
     <motion.section
       ref={ref}
-      id="home" 
+      id="home"
       style={{
         scale,
         opacity,
@@ -43,6 +36,9 @@ export default function Hero() {
     >
       {/* TEXT BLOCK */}
       <motion.div
+        initial={{ x: -200, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ duration: 1, ease: "easeOut" }}
         style={{ x: textX }}
         className="relative z-20 w-full"
       >
@@ -69,6 +65,9 @@ export default function Hero() {
 
       {/* IMAGE */}
       <motion.div
+        initial={{ x: 200, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
         style={{ x: imageX }}
         className="absolute right-24 top-1/2 -translate-y-1/2 z-10"
       >
