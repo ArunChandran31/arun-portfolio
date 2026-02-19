@@ -32,7 +32,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <body className={`${neueHaas.className} bg-black text-white`}>
         
         {/* Page Content */}
@@ -43,7 +43,7 @@ export default function RootLayout({
 
           {/* Footer */}
           <footer className="border-t border-white/10">
-            <div className="px-24 py-10 flex flex-col md:flex-row items-center justify-between text-sm text-white/40">
+            <div className="px-6 md:px-12 lg:px-24 py-10 flex flex-col md:flex-row items-center justify-between text-sm text-white/40">
 
               {/* Left */}
               <div>

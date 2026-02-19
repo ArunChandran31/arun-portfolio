@@ -46,7 +46,7 @@ export default function Socials() {
       ref={ref}
       id="socials"
       style={{ opacity, y, scale, filter: blur }}
-      className="px-24 py-32 text-white scroll-mt-32"
+      className="px-6 md:px-12 lg:px-24 py-24 text-white scroll-mt-28"
     >
       <h2 className="text-6xl font-bold mb-10 tracking-tight">
         socials.
@@ -56,7 +56,7 @@ export default function Socials() {
         Whether you’re a hiring manager, collaborator, or looking to build something impactful — let’s connect.
       </p>
 
-      <div className="grid md:grid-cols-2 gap-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
 
         <SocialCard
           title="LinkedIn"

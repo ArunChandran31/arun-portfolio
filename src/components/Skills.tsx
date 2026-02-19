@@ -105,7 +105,7 @@ export default function Skills() {
         opacity,
         filter: blur,
       }}
-      className="min-h-screen px-24 py-32 text-white scroll-mt-32"
+      className="min-h-screen px-24 py-24 text-white scroll-mt-28"
     >
       {/* Title same alignment as other sections */}
       <h2 className="text-6xl font-bold mb-24 tracking-tight">
@@ -114,7 +114,7 @@ export default function Skills() {
 
       {/* Centered Board */}
       <div className="flex justify-center">
-        <div className="grid grid-cols-9 grid-rows-2 gap-6">
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-9 gap-4 md:gap-6">
           {skills.map((skill, i) => (
             <SkillTile key={i} skill={skill} />
           ))}

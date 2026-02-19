@@ -16,7 +16,7 @@ export default function Navbar() {
       <nav className="flex justify-between items-center px-24 py-6 text-white">
 
         {/* LEFT */}
-        <div className="flex gap-10 text-sm font-light">
+        <div className="flex gap-10 md:gap-8 lg:gap-10 text-sm font-light">
           <NavLink href="#home">Home</NavLink>
           <NavLink href="#about">About</NavLink>
           <NavLink href="#experience">Experience</NavLink>
@@ -28,7 +28,7 @@ export default function Navbar() {
         </div>
 
         {/* RIGHT */}
-        <div className="flex gap-10 text-sm font-light">
+        <div className="flex gap-10 md:gap-8 lg:gap-10 text-sm font-light">
           <NavLink href="#projects">Projects</NavLink>
           <NavLink href="#contact">Contact</NavLink>
           <NavLink href="#socials">Socials</NavLink>

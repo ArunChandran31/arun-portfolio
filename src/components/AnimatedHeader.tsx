@@ -11,7 +11,7 @@ export default function AnimatedHeader({
   const text = "arun chandran.";
   const [displayed, setDisplayed] = useState("");
   const [phase, setPhase] = useState<
-    "blinkStart" | "typing" | "blinkEnd" | "move"
+    "blinkStart" | "typing" | "blinkEnd" | "move" | "fade"
   >("blinkStart");
 
   useEffect(() => {
@@ -42,6 +42,15 @@ export default function AnimatedHeader({
 
       return () => clearTimeout(timer);
     }
+
+    /* ⭐ Fade after move */
+    if (phase === "move") {
+      const timer = setTimeout(() => {
+        setPhase("fade");
+      }, 2000);
+
+      return () => clearTimeout(timer);
+    }
   }, [phase, text, onFinish]);
 
   return (
@@ -51,20 +60,32 @@ export default function AnimatedHeader({
         left: "50%",
         x: "-50%",
         y: "-50%",
+        opacity: 1,
       }}
       animate={
         phase === "move"
-          ? { top: 32, left: "50%", x: "-50%", y: 0 }
-          : { top: "50%", left: "50%", x: "-50%", y: "-50%" }
+          ? { top: 40, left: "50%", x: "-50%", y: 0, opacity: 1 }
+          : phase === "fade"
+          ? { top: 40, left: "50%", x: "-50%", y: 0, opacity: 0 } // ⭐ lock position while fading
+          : { top: "50%", left: "50%", x: "-50%", y: "-50%", opacity: 1 }
       }
-      transition={{ duration: 1, ease: "easeInOut" }}
+      transition={{
+        duration: 1.2,
+        ease: [0.22, 1, 0.36, 1],
+      }}
       className="fixed z-50"
     >
       <motion.h1
         animate={{
-          fontSize: phase === "move" ? "1.0rem" : "3rem", // 0.875rem = text-sm
+          fontSize:
+            phase === "move" || phase === "fade"
+              ? "0.875rem" // ⭐ text-sm
+              : "3rem",
         }}
-        transition={{ duration: 1, ease: "easeInOut" }}
+        transition={{
+          duration: 1.2,
+          ease: [0.22, 1, 0.36, 1],
+        }}
         className="font-light tracking-wide flex items-center"
       >
         {displayed}

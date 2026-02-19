@@ -1,23 +1,26 @@
-@import "tailwindcss";
+  @import "tailwindcss";
 
-:root {
-  --background: #000000;
-  --foreground: #ffffff;
-}
+  :root {
+    --background: #000000;
+    --foreground: #ffffff;
+  }
+  html{
+    scroll-behavior: smooth;
+    scroll-padding-top: 140px;
+  }
+  body {
+    background: var(--background);
+    color: var(--foreground);
+  }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-}
+  /* Cursor Blink */
+  @keyframes blinkCursor {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+  }
 
-/* Cursor Blink */
-@keyframes blinkCursor {
-  0% { opacity: 1; }
-  50% { opacity: 0; }
-  100% { opacity: 1; }
-}
-
-.cursor {
-  animation: blinkCursor 1s steps(1) infinite;
-}
+  .cursor {
+    animation: blinkCursor 1s steps(1) infinite;
+  }
 

@@ -9,8 +9,6 @@ import {
 } from "framer-motion";
 import { useRef } from "react";
 
-/* ---------------- TYPES ---------------- */
-
 type Experience = {
   title: string;
   duration: string;
@@ -26,8 +24,6 @@ type ExperienceItemProps = {
   rightShift: MotionValue<string>;
 };
 
-/* ---------------- MAIN COMPONENT ---------------- */
-
 export default function Experience() {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -35,8 +31,6 @@ export default function Experience() {
     target: ref,
     offset: ["start 80%", "end 20%"],
   });
-
-  /* ---------- ENTER + EXIT BLUR ---------- */
 
   const sectionOpacity = useTransform(
     scrollYProgress,
@@ -68,8 +62,6 @@ export default function Experience() {
     stiffness: 120,
     damping: 25,
   });
-
-  /* ---------------- EXPERIENCE DATA ---------------- */
 
   const experiences: Experience[] = [
     {
@@ -120,20 +112,18 @@ export default function Experience() {
     },
   ];
 
-  /* ---------------- RENDER ---------------- */
-
   return (
     <motion.section
       ref={ref}
       id="experience"
       style={{ opacity: sectionOpacity, filter: blur }}
-      className="relative min-h-screen px-24 py-32 text-white"
+      className="relative min-h-screen px-6 md:px-12 lg:px-24 py-24 text-white scroll-mt-28"
     >
-      <h2 className="text-6xl font-bold mb-24 tracking-tight">
+      <h2 className="text-5xl md:text-6xl font-bold mb-20">
         experiences.
       </h2>
 
-      <div className="space-y-32">
+      <div className="space-y-24">
         {experiences.map((exp, index) => (
           <ExperienceItem
             key={index}
@@ -149,8 +139,6 @@ export default function Experience() {
     </motion.section>
   );
 }
-
-/* ---------------- EXPERIENCE ITEM ---------------- */
 
 function ExperienceItem({
   exp,
@@ -186,32 +174,23 @@ function ExperienceItem({
   );
 
   return (
-    <div className="grid grid-cols-[40px_1fr_2fr] gap-8 items-center">
-      {/* Circle aligned to vertical center */}
-      <div className="flex justify-center">
+    <div className="grid grid-cols-1 md:grid-cols-[40px_1fr_2fr] gap-6 items-center">
+      {/* DOT */}
+      <div className="flex justify-center md:justify-start">
         <motion.div
-          style={{
-            scale: glowScale,
-            opacity: glowOpacity,
-          }}
+          style={{ scale: glowScale, opacity: glowOpacity }}
           className="w-4 h-4 rounded-full bg-white shadow-[0_0_30px_rgba(255,255,255,0.9)]"
         />
       </div>
 
-      {/* Title Column */}
       <motion.div style={{ x: leftShift }}>
-        <h3 className="text-2xl font-semibold">
-          {exp.title}
-        </h3>
-        <p className="text-sm text-white/60 mt-2">
-          {exp.duration}
-        </p>
+        <h3 className="text-xl md:text-2xl font-semibold">{exp.title}</h3>
+        <p className="text-sm text-white/60 mt-2">{exp.duration}</p>
       </motion.div>
 
-      {/* Description Block */}
       <motion.div
         style={{ x: rightShift }}
-        className="space-y-4 text-white/80 leading-relaxed text-[15px] p-6 rounded-2xl backdrop-blur-md border border-white/10 bg-white/5 transition duration-300 hover:bg-white/10 hover:border-white/20"
+        className="space-y-4 text-white/80 text-sm md:text-[15px] p-5 md:p-6 rounded-2xl backdrop-blur-md border border-white/10 bg-white/5"
       >
         {exp.points.map((point, i) => (
           <div key={i} className="flex gap-3">

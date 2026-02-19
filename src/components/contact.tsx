@@ -53,20 +53,20 @@ export default function Contact() {
       ref={ref}
       id="contact"
       style={{ opacity, y, scale, filter: blur }}
-      className="min-h-[50vh] px-24 py-32 text-white scroll-mt-32"
+      className="min-h-[50vh] px-24 py-32 text-white scroll-mt-28"
     >
       <h2 className="text-6xl font-bold mb-24 tracking-tight">
         contact.
       </h2>
 
-      <div className="grid grid-cols-2 gap-16">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
 
         {/* LEFT CARD — HIRING */}
         <motion.div
           whileHover={{ y: -6 }}
           transition={{ type: "spring", stiffness: 200 }}
           className="
-            p-12
+            p-8 md:p-12
             rounded-3xl
             backdrop-blur-md
             bg-white/5
@@ -117,7 +117,7 @@ export default function Contact() {
           whileHover={{ y: -6 }}
           transition={{ type: "spring", stiffness: 200 }}
           className="
-            p-12
+            p-8 md:p-12
             rounded-3xl
             backdrop-blur-md
             bg-white/5

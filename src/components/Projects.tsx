@@ -31,13 +31,13 @@ export default function Projects() {
       ref={ref}
       id="projects"
       style={{ opacity, y, scale, filter: blur }}
-      className="min-h-screen px-24 py-32 text-white"
+      className="min-h-screen px-6 md:px-12 lg:px-24 py-24 text-white scroll-mt-28"
     >
       <h2 className="text-6xl font-bold mb-24 tracking-tight">
         projects.
       </h2>
 
-      <div className="space-y-20">
+      <div className="space-y-15">
 
         <ProjectCard
           title="Smart Search Engine with Autocomplete & Ranking"
@@ -129,7 +129,7 @@ function ProjectCard({
       "
     >
       <div className="flex items-start justify-between mb-4">
-        <h3 className="text-2xl font-semibold">
+        <h3 className="text-xl md:text-2xl font-semibold">
           {title}
         </h3>
 

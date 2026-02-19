@@ -1,103 +1,45 @@
 "use client";
-
-import {
-  motion,
-  useScroll,
-  useTransform,
-} from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
 export default function About() {
   const ref = useRef(null);
-
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start 90%", "end 10%"], // animate only near entry & exit
+    offset: ["start 90%", "end 10%"],
   });
 
-  /* Movement only at entry and exit */
-  const textX = useTransform(
-    scrollYProgress,
-    [0, 0.15, 0.85, 1],
-    ["20%", "0%", "0%", "40%"]
-  );
-
-  const videoX = useTransform(
-    scrollYProgress,
-    [0, 0.15, 0.85, 1],
-    ["-20%", "0%", "0%", "-40%"]
-  );
-
-  /* Keep your existing scale */
-  const scale = useTransform(
-    scrollYProgress,
-    [0, 0.5, 1],
-    [0.92, 1, 0.92]
-  );
-
-  /* Keep fade behavior */
-  const opacity = useTransform(
-    scrollYProgress,
-    [0, 0.15, 0.85, 1],
-    [0, 1, 1, 0]
-  );
-
-  /* Blur only on entry and exit */
-  const blurValue = useTransform(
-    scrollYProgress,
-    [0, 0.15, 0.85, 1],
-    [12, 0, 0, 14]
-  );
-
-  const blur = useTransform(
-    blurValue,
-    (v) => `blur(${v}px)`
-  );
+  const textX = useTransform(scrollYProgress,[0,0.15,0.85,1],["20%","0%","0%","40%"]);
+  const videoX = useTransform(scrollYProgress,[0,0.15,0.85,1],["-20%","0%","0%","-40%"]);
+  const scale = useTransform(scrollYProgress,[0,0.5,1],[0.92,1,0.92]);
+  const opacity = useTransform(scrollYProgress,[0,0.15,0.85,1],[0,1,1,0]);
+  const blurValue = useTransform(scrollYProgress,[0,0.15,0.85,1],[12,0,0,14]);
+  const blur = useTransform(blurValue,(v)=>`blur(${v}px)`);
 
   return (
     <motion.section
       ref={ref}
       id="about"
-      style={{
-        scale,
-        opacity,
-        filter: blur,
-      }}
-      className="min-h-screen flex items-center px-24 text-white relative overflow-hidden scroll-mt-32"
+      style={{ scale, opacity, filter: blur }}
+      className="min-h-screen flex items-center px-6 md:px-12 lg:px-24 text-white relative overflow-hidden pt-28 pb-24 scroll-mt-28"
     >
       <div className="w-full">
+        <motion.h2 className="text-5xl md:text-6xl font-bold mb-20">about.</motion.h2>
 
-        {/* HEADER */}
-        <motion.h2
-          className="text-6xl font-bold mb-20 tracking-tight"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-        >
-          about.
-        </motion.h2>
-
-        <div className="grid grid-cols-[420px_1fr] gap-20 items-center">
-
-          {/* VIDEO LEFT */}
-          <motion.div style={{ x: videoX }}>
+        <div className="grid grid-cols-1 lg:grid-cols-[420px_1fr] gap-12 lg:gap-20 items-center">
+          <motion.div style={{ x: videoX }} className="flex justify-center">
             <video
               src="/pixel-arun-vid.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-[420px] h-[420px] object-cover rounded-[40px]"
+              autoPlay loop muted playsInline
+              className="w-full max-w-[420px] h-[320px] md:h-[380px] lg:h-[420px] object-cover rounded-[40px]"
             />
           </motion.div>
 
-          {/* TEXT RIGHT */}
           <motion.div style={{ x: textX }}>
-            <p className="text-[19px] font-light leading-relaxed text-justify tracking-wide text-white/85">
-              Hello there!, I’m Arun Kumar (aka arun chandran) – a Computer Science graduate passionate about building thoughtful, scalable digital experiences. I enjoy working at the intersection of software engineering, full-stack development, and DevOps, where ideas evolve into reliable, production-ready systems. Over the past few years, I’ve built AI-driven frameworks, real-time activity recognition systems, and modern web applications using Java, Python, C/C++, JavaScript, React, Flask, MongoDB, and SQL. I’ve explored backend architecture, system design, UI engineering, cloud deployment, and CI/CD pipelines—always focusing on clean, efficient, and maintainable code. As an IBM Certified DevOps Engineer and founder of Creviro.io, I value strong fundamentals, structured problem-solving, and continuous learning while contributing to impactful, real-world products. There’s more to my journey — feel free to scroll and explore.
+            <p className="text-[18px] md:text-[19px] font-light leading-relaxed text-justify text-white/85">
+              Hello there! I’m Arun Kumar (aka arun chandran), a Computer Science graduate passionate about building scalable digital experiences across software engineering, full-stack development, and DevOps. I’ve worked on projects ranging from AI-driven systems to modern web applications using React, Python, and MongoDB, while exploring backend architecture, cloud deployment, and CI/CD practices. As an IBM Certified DevOps Engineer and founder of Creviro.io, I enjoy turning ideas into clean, efficient, and maintainable products. I’m currently seeking opportunities to grow as a software engineer by contributing to meaningful solutions and learning from experienced teams. There’s more to my journey — feel free to scroll and explore.
             </p>
           </motion.div>
-
         </div>
       </div>
     </motion.section>
