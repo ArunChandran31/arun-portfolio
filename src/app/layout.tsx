@@ -47,7 +47,7 @@ export default function RootLayout({
 
               {/* Left */}
               <div>
-                © {new Date().getFullYear()} Designed by Arun Kumar · Creviro.io
+                © {new Date().getFullYear()} Studio Creviro.io | Design by Arun Chandran.
               </div>
 
               {/* Right */}
