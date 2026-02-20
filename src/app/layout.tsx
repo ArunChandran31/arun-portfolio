@@ -42,7 +42,7 @@ export default function RootLayout({
           </main>
 
           {/* Footer */}
-          <footer className="border-t border-white/10">
+          <footer className="border-t border-white/10 bg-black/80 backdrop-blur-md">
             <div className="px-6 md:px-12 lg:px-24 py-10 flex flex-col md:flex-row items-center justify-between text-sm text-white/40">
 
               {/* Left */}
