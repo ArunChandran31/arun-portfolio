@@ -11,6 +11,7 @@ import Projects from "@/components/Projects";
 import Contact from "@/components/contact";
 import Socials from "@/components/Socials";
 import Skills from "@/components/Skills";
+import Designs from "@/components/Designs";
 
 export default function Home() {
   const [showHero, setShowHero] = useState(false);
@@ -31,7 +32,8 @@ export default function Home() {
           <Hero />
           <About/>
           <Experience />
-          <Projects /> 
+          <Projects />
+          <Designs /> 
           <Skills/>
           <Contact />
           <Socials />
